@@ -95,8 +95,8 @@ export default function Navbar() {
               <Image
                 src="/images/PULSEBRIDGE-LOGO_PNG-1.png"
                 alt="PulseBridge Logo"
-                width={150}
-                height={45}
+                width={105}
+                height={35}
                 className="object-contain"
                 priority
               />
