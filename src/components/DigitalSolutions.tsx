@@ -46,7 +46,7 @@ export default function DigitalSolutions() {
         </motion.div>
 
         {/* ── Two columns: features LEFT · image RIGHT ─────────── */}
-        <div className="flex flex-col md:flex-row items-center gap-10 md:gap-14 mb-12">
+        <div className="flex flex-col-reverse md:flex-row items-center gap-10 md:gap-14 mb-12">
 
           {/* Left: feature checklist */}
           <motion.div
