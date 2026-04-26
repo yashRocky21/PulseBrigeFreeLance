@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function HeroSection() {
   return (
@@ -48,12 +49,12 @@ export default function HeroSection() {
           Enabling Remote Data Collection and Analysis for Clinical Trials and Virtual Healthcare
         </p>
         <div className="flex flex-col items-center gap-5 w-full max-w-xs">
-          <a href="/digital-healthcare" className="w-full text-center bg-white text-slate-800 hover:bg-slate-100 text-sm font-medium py-3 rounded-full transition-colors duration-200">
+          <Link href="/" className="w-full text-center bg-white text-slate-800 hover:bg-slate-100 text-sm font-medium py-3 rounded-full transition-colors duration-200">
             Read More
-          </a>
-          <a href="/book-your-demo" className="w-full text-center bg-white text-slate-800 hover:bg-slate-100 text-sm font-medium py-3 rounded-full transition-colors duration-200">
+          </Link>
+          <Link href="/" className="w-full text-center bg-white text-slate-800 hover:bg-slate-100 text-sm font-medium py-3 rounded-full transition-colors duration-200">
             Book A Demo
-          </a>
+          </Link>
         </div>
       </motion.div>
 
@@ -103,20 +104,20 @@ export default function HeroSection() {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <a
-                href="/digital-healthcare"
+              <Link
+                href="/"
                 className="inline-block bg-white text-slate-800 hover:bg-slate-100 font-medium rounded-full transition-colors duration-200"
                 style={{ fontSize: "clamp(12px, 1.1vw, 14px)", padding: "10px 28px" }}
               >
                 Read More
-              </a>
-              <a
-                href="/book-your-demo"
+              </Link>
+              <Link
+                href="/"
                 className="inline-block bg-white text-slate-800 hover:bg-slate-100 font-medium rounded-full transition-colors duration-200"
                 style={{ fontSize: "clamp(12px, 1.1vw, 14px)", padding: "10px 28px" }}
               >
                 Book A Demo
-              </a>
+              </Link>
             </div>
           </div>
         </motion.div>

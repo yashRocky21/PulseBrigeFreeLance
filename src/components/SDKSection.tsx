@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 // Custom SVG Icons
 const HeartPulseIcon = ({ className }: { className?: string }) => (
@@ -103,18 +104,21 @@ export default function SDKSection() {
 
         {/* READ MORE Button */}
         <div className="flex justify-center">
-          <motion.a
-            href="/contact"
-            className="inline-block text-white text-[12px] font-bold uppercase tracking-widest py-3 px-8 rounded-full transition-all duration-300 shadow-[0px_8px_20px_rgba(123,193,69,0.4)]"
-            style={{ backgroundColor: "#7BC145", fontSize: "0.7rem" }}
-            whileHover={{ backgroundColor: "#0872BA", boxShadow: "0px_8px_20px_rgba(8,114,186,0.4)" }}
+          <motion.span
+            className="inline-block text-white text-[12px] font-bold uppercase tracking-widest py-2.5 px-5 rounded-full transition-colors duration-200 "
+            style={{ backgroundColor: "#7BC145", fontSize: "0.6998rem" }}
+            whileHover={{ backgroundColor: "#0872BA" }}
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            READ MORE
-          </motion.a>
+            <Link
+              href="/"
+            >
+              READ MORE
+            </Link>
+          </motion.span>
         </div>
 
       </div>

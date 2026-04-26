@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const features = [
   "MCT or Holter Modes",
@@ -87,18 +88,21 @@ export default function AmbulatoryComponent() {
 
         {/* ── READ MORE button ─────────────────────────────────── */}
         <div className="flex justify-center">
-          <motion.a
-            href="/clinical-trials"
+          <motion.span
             className="inline-block text-white text-[12px] font-bold uppercase tracking-widest py-2.5 px-5 rounded-full transition-colors duration-200 "
-           style={{ backgroundColor: "#7BC145" , fontSize:"0.6998rem" }} 
+            style={{ backgroundColor: "#7BC145", fontSize: "0.6998rem" }}
             whileHover={{ backgroundColor: "#0872BA" }}
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            READ MORE
-          </motion.a>
+            <Link
+              href="/"
+            >
+              READ MORE
+            </Link>
+          </motion.span>
         </div>
 
       </div>

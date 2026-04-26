@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const features = [
   "Integrated Clinician Portal",
@@ -11,8 +12,7 @@ const features = [
   "Alerts, History and Trends",
 ];
 
-const RPM_IMAGE =
-  "/images/ECG.webp";
+const RPM_IMAGE = "/images/ECG.webp";
 
 export default function HospitalComponent() {
   return (
@@ -22,7 +22,6 @@ export default function HospitalComponent() {
       style={{ backgroundColor: "#f7f7f7" }}
     >
       <div className="max-w-5xl mx-auto px-6 md:px-[60px]">
-
         {/* ── Heading + blue underline ─────────────────────────── */}
         <motion.div
           className="text-center mb-10"
@@ -47,16 +46,15 @@ export default function HospitalComponent() {
           />
 
           <p className="text-slate-500 text-[13px] leading-relaxed max-w-2xl mx-auto">
-            Continuity of acute patient care starts in the hospital and continues to the home.
-            PulseBridge's integrated acute remote patient monitoring solution offers continuous
-            and real-time monitoring of patient vitals, including live ECG, from virtually any
-            location.
+            Continuity of acute patient care starts in the hospital and
+            continues to the home. PulseBridge's integrated acute remote patient
+            monitoring solution offers continuous and real-time monitoring of
+            patient vitals, including live ECG, from virtually any location.
           </p>
         </motion.div>
 
         {/* ── Two columns ──────────────────────────────────────── */}
         <div className="flex flex-col md:flex-row items-center gap-10 md:gap-14 mb-12">
-
           {/* Left: large image */}
           <motion.div
             className="w-full md:w-[52%] shrink-0"
@@ -104,20 +102,22 @@ export default function HospitalComponent() {
 
         {/* ── READ MORE button ─────────────────────────────────── */}
         <div className="flex justify-center">
-          <motion.a
-            href="/digital-healthcare"
-            className="inline-block text-white text-[12px] font-bold uppercase tracking-widest py-2.5 px-5 rounded-full transition-colors duration-200"
-            style={{ backgroundColor: "#7BC145" , fontSize:"0.6998rem" }} 
+          <motion.span
+            className="inline-block text-white text-[12px] font-bold uppercase tracking-widest py-2.5 px-5 rounded-full transition-colors duration-200 "
+            style={{ backgroundColor: "#7BC145", fontSize: "0.6998rem" }}
             whileHover={{ backgroundColor: "#0872BA" }}
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            READ MORE
-          </motion.a>
+            <Link
+              href="/"
+            >
+              READ MORE
+            </Link>
+          </motion.span>
         </div>
-
       </div>
     </section>
   );

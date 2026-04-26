@@ -9,6 +9,7 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/f
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,10 +19,14 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const toggleSubmenu = (name: string) => {
+    setActiveSubmenu(activeSubmenu === name ? null : name);
+  };
+
   const navLinks = [
     { 
       name: "Digital Healthcare", 
-      to: "digital-healthcare",
+      to: "#",
       subItems: [
         { name: "Hospital-at-Home", to: "hospital-at-home" },
         { name: "Ambulatory Cardiac Monitoring", to: "ambulatory-cardiac-monitoring" }
@@ -29,7 +34,7 @@ export default function Navbar() {
     },
     { 
       name: "Clinical Trials", 
-      to: "clinical-trials",
+      to: "#",
       subItems: [
         { name: "Cardiology", to: "cardiology" },
         { name: "Oncology", to: "oncology" },
@@ -40,7 +45,7 @@ export default function Navbar() {
     },
     { 
       name: "RPM Platform", 
-      to: "rpm-platform",
+      to: "#",
       subItems: [
         { name: "Biometrics Data Platform", to: "biometrics-data-platform" },
         { name: "Arrhythmia Detection", to: "arrhythmia-detection" }
@@ -48,7 +53,7 @@ export default function Navbar() {
     },
     { 
       name: "Medical Wearables", 
-      to: "medical-wearables",
+      to: "#",
       subItems: [
         { name: "Wearable ECG Monitor", to: "wearable-ecg-monitor" },
         { name: "Wearable Temperature Monitor", to: "wearable-temperature-monitor" },
@@ -59,7 +64,7 @@ export default function Navbar() {
     },
     { 
       name: "Company", 
-      to: "company",
+      to: "#",
       subItems: [
         { name: "About Us", to: "about-us" },
         { name: "Press", to: "press" },
@@ -91,7 +96,7 @@ export default function Navbar() {
         <div className="w-full px-6 md:px-[60px] flex justify-between items-center">
           {/* Logo */}
           <div className="cursor-pointer shrink-0">
-            <Link to="home" smooth={true} duration={500}>
+            <Link to="#" smooth={true} duration={500}>
               <Image
                 src="/images/PULSEBRIDGE-LOGO_PNG-1.png"
                 alt="PulseBridge Logo"
@@ -144,7 +149,10 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center">
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={() => {
+                setIsMobileMenuOpen(!isMobileMenuOpen);
+                setActiveSubmenu(null);
+              }}
               className="text-slate-800 hover:text-[#1279be] transition-colors focus:outline-none"
             >
               {isMobileMenuOpen ? <X size={32} /> : <Menu size={32} />}
@@ -154,20 +162,40 @@ export default function Navbar() {
 
         {/* Mobile Nav */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 w-full bg-white shadow-2xl py-6 flex flex-col space-y-4 px-6 border-t border-gray-100">
+          <div className="lg:hidden absolute top-full left-0 w-full bg-white shadow-2xl py-6 flex flex-col space-y-2 px-6 border-t border-gray-100 max-h-[80vh] overflow-y-auto">
             {navLinks.map((link) => (
-              <div key={link.name} className="flex items-center justify-between border-b border-gray-50 pb-3">
-                <Link
-                  to={link.to}
-                  smooth={true}
-                  duration={500}
-                  offset={-130}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-lg font-medium text-slate-800 hover:text-[#1279be] transition-colors cursor-pointer w-full"
+              <div key={link.name} className="flex flex-col border-b border-gray-50 last:border-0">
+                <div 
+                  className="flex items-center justify-between py-4 cursor-pointer group"
+                  onClick={() => toggleSubmenu(link.name)}
                 >
-                  {link.name}
-                </Link>
-                <ChevronDown size={20} className="text-slate-400" />
+                  <span className={`text-lg font-medium transition-colors ${activeSubmenu === link.name ? 'text-[#1279be]' : 'text-slate-800'}`}>
+                    {link.name}
+                  </span>
+                  <ChevronDown 
+                    size={20} 
+                    className={`text-slate-400 transition-transform duration-300 ${activeSubmenu === link.name ? 'rotate-180 text-[#1279be]' : ''}`} 
+                  />
+                </div>
+                
+                {/* Mobile Submenu */}
+                {activeSubmenu === link.name && link.subItems && (
+                  <div className="bg-slate-50 flex flex-col space-y-4 px-4 py-4 mb-4 rounded-lg">
+                    {link.subItems.map((subItem) => (
+                      <Link
+                        key={subItem.name}
+                        to={subItem.to}
+                        smooth={true}
+                        duration={500}
+                        offset={-130}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="text-[15px] font-normal text-slate-600 hover:text-[#1279be] transition-colors"
+                      >
+                        {subItem.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>
