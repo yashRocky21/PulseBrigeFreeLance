@@ -1,33 +1,39 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import HospitalComponent from "@/components/HospitalComponent";
+import DigitalSolutions from "@/components/DigitalSolutions";
+import AmbulatoryComponent from "@/components/AmbulatoryComponent";
+import BiometricsPlatformSection from "@/components/BiometricsPlatformSection";
+import SDKSection from "@/components/SDKSection";
+import Footer from "@/components/Footer";
+
+/* ── IMAGE PATHS ─────────────────────────────────────────────── */
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col bg-background">
+    <main className="flex min-h-screen flex-col bg-white">
       <Navbar />
-      
-      {/* Hero Section */}
+
+      {/* ── Phase 1: Hero ─────────────────────────────────────── */}
       <HeroSection />
 
-      <section id="digital-healthcare" className="min-h-screen flex items-center justify-center bg-slate-50">
-        <h2 className="text-3xl font-bold text-slate-300">Digital Healthcare (Coming Soon)</h2>
-      </section>
+      {/* ── Phase 2: Digital Healthcare — Hospital-at-Home ───── */}
+      <HospitalComponent />
 
-      <section id="clinical-trials" className="min-h-screen flex items-center justify-center">
-        <h2 className="text-3xl font-bold text-slate-300">Clinical Trials (Coming Soon)</h2>
-      </section>
+      {/* ── Phase 2: Clinical Trials ──────────────────────────── */}
+      <DigitalSolutions />
 
-      <section id="rpm-platform" className="min-h-screen flex items-center justify-center bg-slate-50">
-        <h2 className="text-3xl font-bold text-slate-300">RPM Platform (Coming Soon)</h2>
-      </section>
+      {/* ── Phase 2: Ambulatory Cardiac Monitoring ────────────── */}
+      <AmbulatoryComponent />
 
-      <section id="company" className="min-h-screen flex items-center justify-center">
-        <h2 className="text-3xl font-bold text-slate-300">Company (Coming Soon)</h2>
-      </section>
+      {/* ── Phase 2: Biometrics Platform (4-column grid) ──────── */}
+      <BiometricsPlatformSection />
 
-      <section id="contact" className="min-h-[50vh] flex items-center justify-center bg-slate-900">
-        <h2 className="text-3xl font-bold text-slate-600">Contact / Footer (Coming Soon)</h2>
-      </section>
+      {/* ── Phase 2: Software Development Kit ────────────────── */}
+      <SDKSection />
+
+      {/* ── Phase 3: Footer ────────────── */}
+      <Footer />
     </main>
   );
 }
