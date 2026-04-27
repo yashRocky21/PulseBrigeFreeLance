@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, X, Search, ChevronDown } from "lucide-react";
@@ -10,6 +10,14 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (isSearchOpen && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [isSearchOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -80,14 +88,51 @@ export default function Navbar() {
         <div className="text-[13px] tracking-wide font-normal">
           <span>Call Us: +91-40 23420049</span>
         </div>
-        <div className="flex items-center">
-          <div className="hidden md:flex items-center space-x-[18px]">
-            <a href="#" className="hover:text-gray-200 transition-colors"><FaFacebookF size={12} /></a>
-            <a href="#" className="hover:text-gray-200 transition-colors"><FaTwitter size={12} /></a>
-            <a href="#" className="hover:text-gray-200 transition-colors"><FaLinkedinIn size={12} /></a>
-            <a href="#" className="hover:text-gray-200 transition-colors"><FaInstagram size={13} /></a>
+        <div className="flex items-center relative h-[28px] justify-end min-w-[200px] md:min-w-[300px]">
+          {/* Default icons (Social + Search trigger) */}
+          <div className={`flex items-center transition-all duration-300 ${isSearchOpen ? 'opacity-0 invisible absolute right-0' : 'opacity-100 visible'}`}>
+            <div className="hidden md:flex items-center space-x-[18px]">
+              <a href="#" className="hover:text-gray-200 transition-colors"><FaFacebookF size={12} /></a>
+              <a href="#" className="hover:text-gray-200 transition-colors"><FaTwitter size={12} /></a>
+              <a href="#" className="hover:text-gray-200 transition-colors"><FaLinkedinIn size={12} /></a>
+              <a href="#" className="hover:text-gray-200 transition-colors"><FaInstagram size={13} /></a>
+            </div>
+            <button 
+              onClick={() => setIsSearchOpen(true)}
+              className="hover:text-gray-200 transition-colors md:ml-[18px] flex items-center justify-center p-1"
+            >
+              <Search size={14} strokeWidth={1.5} />
+            </button>
           </div>
-          <button className="hover:text-gray-200 transition-colors md:ml-[18px]"><Search size={14} strokeWidth={1.5} /></button>
+
+          {/* Expanded Search Bar */}
+          <div 
+            className={`absolute right-0 flex items-center transition-all duration-300 origin-right ${
+              isSearchOpen ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0 pointer-events-none'
+            }`}
+          >
+            <div className="flex items-center bg-white/15 rounded-full px-3 py-1.5 border border-white/20 backdrop-blur-md shadow-sm">
+              <Search size={12} className="text-white/80 mr-2 shrink-0" />
+              <input 
+                ref={searchInputRef}
+                type="text" 
+                placeholder="Search resources, articles..." 
+                className="bg-transparent border-none outline-none text-white text-[13px] placeholder:text-white/70 w-[130px] md:w-[220px] transition-all"
+                style={{ opacity: isSearchOpen ? 1 : 0 }}
+                onBlur={(e) => {
+                  if (!e.relatedTarget) {
+                    setIsSearchOpen(false);
+                  }
+                }}
+              />
+              <button 
+                onClick={() => setIsSearchOpen(false)} 
+                className="ml-2 text-white/70 hover:text-white transition-colors shrink-0 p-0.5"
+              >
+                <X size={14} />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
