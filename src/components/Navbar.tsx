@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { Link } from "react-scroll";
+import Link from "next/link";
 import { Menu, X, Search, ChevronDown } from "lucide-react";
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 
@@ -96,7 +96,7 @@ export default function Navbar() {
         <div className="w-full px-6 md:px-[60px] flex justify-between items-center">
           {/* Logo */}
           <div className="cursor-pointer shrink-0">
-            <Link to="#" smooth={true} duration={500}>
+            <Link href="#">
               <Image
                 src="/images/PULSEBRIDGE-LOGO_PNG-1.png"
                 alt="PulseBridge Logo"
@@ -113,10 +113,7 @@ export default function Navbar() {
             {navLinks.map((link) => (
               <div key={link.name} className="relative group cursor-pointer flex items-center text-[13px] font-medium text-slate-900 hover:text-[#1279be] transition-colors">
                 <Link
-                  to={link.to}
-                  smooth={true}
-                  duration={500}
-                  offset={-130}
+                  href={link.to}
                   className="py-2"
                 >
                   {link.name}
@@ -130,10 +127,7 @@ export default function Navbar() {
                       {link.subItems.map((subItem) => (
                         <Link
                           key={subItem.name}
-                          to={subItem.to}
-                          smooth={true}
-                          duration={500}
-                          offset={-130}
+                          href={subItem.to}
                           className="block px-6 py-3 text-[13px] font-normal text-slate-700 hover:text-[#1279be] hover:bg-slate-100 transition-colors"
                         >
                           {subItem.name}
@@ -184,10 +178,7 @@ export default function Navbar() {
                     {link.subItems.map((subItem) => (
                       <Link
                         key={subItem.name}
-                        to={subItem.to}
-                        smooth={true}
-                        duration={500}
-                        offset={-130}
+                        href={subItem.to}
                         onClick={() => setIsMobileMenuOpen(false)}
                         className="text-[15px] font-normal text-slate-600 hover:text-[#1279be] transition-colors"
                       >
